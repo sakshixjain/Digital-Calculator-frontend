@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+h1{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+body{
+    background-image: linear-gradient(#CEA0AA, #E9C2C5 ,#FEE1DD,#B8D8E3, #9DB0CE,#535878);
+    height: 680px;
+}
+    .container{
+          backdrop-filter: blur(10px);
+           margin: auto;
+          color: #CEA0AA;
+          background-color: #535878;
+            border: 1px solid black;
+           border-radius: 10px;
+            height: 460px;
+            width: 280px;
+             justify-content: center;
+             text-align: center;
+        }
+     #display{
+            background-color: #FEE1DD;
+            font-size: 30px;
+            text-align:right;
+          margin: 9px 9px 9px 9px;
+          color: #535878;
+            border: 1px solid rgb(243, 241, 241);
+            height: 100px;
+            width: 260px;
+             justify-content:center; 
+        }
+      button{
+            transition: transform .1s;
+            width: 55px;
+    margin: 5px;
+    align-items: center;
+    text-align: center; 
+    font-size: 24px;
+    box-shadow: 2px 2px 4px 2px rgb(70, 67, 67);
+    border-radius: 40px; 
+    color:#CEA0AA ;
+    background-color:#313549;
+    border: 1px solid rgb(54, 54, 54);
+    padding: 13px;
+ &:hover{
+    transform: scale(0.9); 
+    color: rgb(32, 76, 141);
+    background-color: #9DB0CE;
+}     
+}
+
+    </style>
+</head>
+<body>
+    <h1>Calculator</h1>
+<div class="container">
+    <div class="box">
+        <input type="text" id="display">
+    </div>
+    <div>
+        <button id="input" style="color: red;">C</button>
+        <button id="input" style="color:  rgb(240, 197, 116) ;">de</button>
+        <button id="input"style="color:  rgb(240, 197, 116) ;">%</button>
+        <button id="input" style="color:  rgb(240, 197, 116) ;">/</button>
+</div>
+<div>
+ <button id="input" >7</button>    
+ <button id="input" >8</button>    
+ <button id="input" >9</button>    
+ <button id="input" style="color:  rgb(240, 197, 116) ;">*</button>    
+<div >
+    <button id="input" >4</button>
+    <button id="input" >5</button>
+    <button id="input" >6</button>
+    <button id="input"style="color:  rgb(240, 197, 116) ;" >-</button>
+</div>
+ <button id="input">1</button>
+     <button id="input">2</button>
+ <button id="input">3</button>
+ <button id="input" style="color:  rgb(240, 197, 116) ;">+</button>
+<div>
+    <button id="input">00</button>
+     <button id="input">0</button>
+     <button id="input"style="color:  rgb(240, 197, 116) ;" >.</button>
+    <button id="input" style=" color: white; background-color: #99767d ;">=</button>
+</div>
+</div>
+<script>
+
+let string=""; 
+let specialChars = ["%", "*", "+","/", "-","="];
+let btn = document.querySelectorAll('#input');
+
+Array.from(btn).forEach((button) => {
+    button.addEventListener('click', (e)=>{
+        if(e.target.innerHTML == '='){
+            string = eval(string);
+       document.querySelector('input').value = string;
+        }
+        else if(e.target.innerHTML=='de'){
+            string = string.slice(0,-1);
+       document.querySelector('input').value = string;
+        }
+ else if(e.target.innerHTML=='C'){
+            string=""
+       document.querySelector('input').value = string;
+        }
+     else if(string =="" &&specialChars.includes(e.target.innerHTML))
+     { 
+        return;
+     string += e.target.innerHTML;
+
+     }
+             else{
+       console.log(e.target);
+       string= string + e.target.innerHTML;
+       document.querySelector('input').value = string;
+        }
+     
+
+    })
+}); 
+
+
+</script>
+</body>
+</html>
